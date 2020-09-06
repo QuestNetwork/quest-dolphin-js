@@ -14,14 +14,6 @@ Bitcoin:
 Ethereum:
 `0xBC2A050E7B87610Bc29657e7e7901DdBA6f2D34E`
 
-## Download
-
-| Platform | Download link                | 
-|---------:|------------------------------|
-| **Linux**  | [0.9.0.AppImage](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0.9.0-linux.zip) 
-| **Mac**    | [0.9.0.app](https://github.com/QuestNetwork/quest-messenger-js/releases/download/0.9.0/@questnetwork-quest-messenger-js-0-9-0-mac.zip) 
-
-If you want anything else, you'll have to build from sources and probably fix some stuff.
 
 ## Description
 
