@@ -1,5 +1,5 @@
 # Quest Dolphin JS
-> A smart api for [Quest PubSub JS](https://github.com/QuestNetwork/quest-pubsub-js)
+> The smart api for [Quest PubSub JS](https://github.com/QuestNetwork/quest-pubsub-js)
 
 ## Lead Maintainer
 
