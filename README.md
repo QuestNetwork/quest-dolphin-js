@@ -30,4 +30,4 @@ It offers an efficient API, spawns and controls applications installed on the ho
 
 ## License
 
-GNU GPLv3
+GNU Affero GPLv3
