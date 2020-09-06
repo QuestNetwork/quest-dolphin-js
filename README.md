@@ -23,7 +23,7 @@ It offers an efficient API, spawns and controls applications installed on the ho
 ## Roadmap
 
 **0.4.1**
- - Uses [go-ipfs](https://github.com/ipfs/go-ipfs) from NodeJS and [js-ipfs](https://github.com/ipfs/js-ipfs) from Electron
+ - Uses [go-ipfs](https://github.com/ipfs/go-ipfs) from NodeJS and [js-ipfs](https://github.com/ipfs/js-ipfs) from Electron/Web
 
 ## Installation & Usage
 ```npm install @questnetwork/quest-dolphin-js```
