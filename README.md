@@ -18,15 +18,12 @@ Ethereum:
 ## Description
 
 The Dolphin Service interacts with the core protocols used on the Quest Network. 
-It offers an efficient API, spawns and controls applications installed on the host machine.
+It offers an efficient API, spawns and controls applications installed on the host machine and controls (Quest Pubsub JS)[https://github.com/QuestNetwork/quest-dolphin-js]
 
 ## Roadmap
 
-**0.4.1**
- - Uses [go-ipfs](https://github.com/ipfs/go-ipfs) from NodeJS and [js-ipfs](https://github.com/ipfs/js-ipfs) from Electron/Web
-
 ## Installation & Usage
-```npm install @questnetwork/quest-dolphin-js```
+```npm install @questnetwork/quest-dolphin-js@0.9.2```
 
 ## License
 
