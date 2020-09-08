@@ -7,12 +7,17 @@ export class Dolphin {
     constructor(ipfsNode) {
       this.ipfsNode = ipfsNode;
       this.commitNowSub = new Subject();
+      this.commitSub = new Subject();
+
       let uVar;
       this.selectedChannel = uVar;
       this.selectedChannelSub = new Subject();
       this.channelNameListSub = new Subject();
       QuestPubSub.commitNowSub.subscribe( (value) => {
         this.commitNowSub.next(value);
+      });
+      QuestPubSub.commitSub.subscribe( (value) => {
+        this.commitSub.next(value);
       });
     }
 
@@ -36,7 +41,6 @@ export class Dolphin {
 
         //clean the Input
         channelInput = channelInput.toLowerCase().replace(/[^A-Z0-9]+/ig, "-");
-
         let channelName = await QuestPubSub.createChannel(channelInput);
         this.getChannelKeyChain(channelName);
         this.getChannelParticipantList(channelName);
@@ -154,6 +158,38 @@ export class Dolphin {
     }
     removeInviteCode(channel,link){
       return QuestPubSub.removeInviteCode(channel, link)
+    }
+
+    createInviteCode(channel,newInviteCodeMax, importFolders = false){
+      let code = uuidv4();
+      let link = ""
+      if(importFolders){
+        //traverse folders and find this channel in the tree
+        let pathArray = this.parseFolderStructureAndGetPath(this.config.channelFolderList, channel);
+        if(pathArray.length > 0){
+          link = pathArray.join("/////") + "/////" + channel + ":" + code;
+        }
+        else{
+          link = channel + ":" + code;
+        }
+        console.log(pathArray);
+      }
+      else{
+          link = channel + ":" + code;
+      }
+
+      link = Buffer.from(link,'utf8').toString('hex');
+      this.addInviteCode(channel,link,code,newInviteCodeMax);
+      this.commitNow();
+      return link;
+    }
+
+    commitNow(){
+      this.commitNowSub.next(true);
+    }
+
+    commit(){
+      this.commitSub.next(true);
     }
 
   }
