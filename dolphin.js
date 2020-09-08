@@ -9,10 +9,8 @@ export class Dolphin {
       this.commitNowSub = new Subject();
       let uVar;
       this.selectedChannel = uVar;
-      this.selectedChannelSub = new Subject<any>();
-    }
-
-    constructor(private ipfs:IpfsService, private ui: UiService) {
+      this.selectedChannelSub = new Subject();
+      this.channelNameListSub = new Subject();
       QuestPubSub.commitNowSub.subscribe( (value) => {
         this.commitNowSub.next(value);
       });
@@ -22,11 +20,11 @@ export class Dolphin {
      return array.indexOf(value) > -1;
    }
 
-   public selectChannel(value){
+    selectChannel(value){
      this.selectedChannel = value;
      this.selectedChannelSub.next(value);
    }
-   public getSelectedChannel(){
+    getSelectedChannel(){
      return this.selectedChannel;
    }
     listen(channel){
@@ -62,7 +60,6 @@ export class Dolphin {
       return QuestPubSub.setChannelParticipantList(partList, channel);
     }
 
-    channelNameListSub = new Subject();
     getChannelNameList(){
       return QuestPubSub.getChannelNameList();
     }
@@ -108,20 +105,20 @@ export class Dolphin {
     }
 
     async joinChannel(channel){
-      try {
-        if(this.ipfs.isReady()){
+      // try {
+      //   if(this.ipfs.isReady()){
             return await this.joinChannelProcess(channel);
-        }
-        else{
-          console.log('Waiting for ipfsNodeReadySub...');
-          this.ipfsNodeReadySub.subscribe(async () => {
-            return await this.joinChannelProcess(channel);
-          });
-        }
-      }
-      catch(error){
-        console.log(error);
-      }
+        // }
+        // else{
+        //   console.log('Waiting for ipfsNodeReadySub...');
+        //   this.ipfsNodeReadySub.subscribe(async () => {
+        //     return await this.joinChannelProcess(channel);
+        //   });
+        // }
+      // }
+      // catch(error){
+      //   console.log(error);
+      // }
     }
 
     async publishChannelMessage(channel, message){
