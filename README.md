@@ -17,7 +17,7 @@ Ethereum:
 
 ## Description
 
-The Dolphin Service interacts with the core protocols used on the Quest Network like [Quest Pubsub JS](https://github.com/QuestNetwork/quest-dolphin-js). It offers an efficient API, spawns and controls applications installed on the host machine.
+The Dolphin Process for the [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js) interacts with the core protocols used on the Quest Network like [Quest Pubsub JS](https://github.com/QuestNetwork/quest-dolphin-js). It offers an efficient API, spawns and controls applications installed on the host machine.
 
 ## Roadmap
 
