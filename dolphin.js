@@ -28,36 +28,16 @@ export class Dolphin {
 
 
    getChallengeFlag(ch){
-     if(typeof this.channelConfig[ch] != 'undefined' && typeof this.channelConfig[ch]['challengeFlag'] != 'undefined'){
-       return this.channelConfig[ch]['challengeFlag']
-     }
-     else{
-       return 0;
-     }
+     return QuestPubSub.getChallengeFlag(ch);
    }
    setChallengeFlag(ch, value){
-     if(typeof this.channelConfig[ch] == 'undefined'){
-       this.channelConfig[ch] = {};
-     }
-     this.channelConfig[ch]['challengeFlag'] = value;
-     this.commit();
+      QuestPubSub.setChallengeFlag(ch);
    }
    getChannelConfig(ch = 'all'){
-     if(ch == 'all'){
-        return this.channelConfig;
-     }
-     else{
-        return this.channelConfig[ch];
-     }
+     return QuestPubSub.getChannelConfig(ch);
    }
    setChannelConfig(config, ch = 'all'){
-     if(ch == 'all'){
-        this.channelConfig = config;
-     }
-     else{
-        this.channelConfig[ch] = config;
-     }
-     this.commit();
+     QuestPubSub.setChannelConfig(ch);
    }
 
     selectChannel(value){
