@@ -32,7 +32,7 @@ export class Dolphin {
        return this.channelConfig[ch]['challengeFlag']
      }
      else{
-       return false;
+       return 0;
      }
    }
    setChallengeFlag(ch, value){
@@ -40,7 +40,7 @@ export class Dolphin {
        this.channelConfig[ch] = {};
      }
      this.channelConfig[ch]['challengeFlag'] = value;
-     commit();
+     this.commit();
    }
    getChannelConfig(ch = 'all'){
      if(ch == 'all'){
