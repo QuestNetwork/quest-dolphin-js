@@ -8,6 +8,7 @@ export class Dolphin {
       this.ipfsNode = ipfsNode;
       this.commitNowSub = new Subject();
       this.commitSub = new Subject();
+      this.channelConfig = {};
 
       let uVar;
       this.selectedChannel = uVar;
@@ -23,6 +24,40 @@ export class Dolphin {
 
     isInArray(value, array) {
      return array.indexOf(value) > -1;
+   }
+
+
+   getChallengeFlag(ch){
+     if(typeof this.channelConfig[ch] != 'undefined' && typeof this.channelConfig[ch]['challengeFlag'] != 'undefined'){
+       return this.channelConfig[ch]['challengeFlag']
+     }
+     else{
+       return false;
+     }
+   }
+   setChallengeFlag(ch, value){
+     if(typeof this.channelConfig[ch] == 'undefined'){
+       this.channelConfig[ch] = {};
+     }
+     this.channelConfig[ch]['challengeFlag'] = value;
+     commit();
+   }
+   getChannelConfig(ch = 'all'){
+     if(ch == 'all'){
+        return this.channelConfig;
+     }
+     else{
+        return this.channelConfig[ch];
+     }
+   }
+   setChannelConfig(config, ch = 'all'){
+     if(ch == 'all'){
+        this.channelConfig = config;
+     }
+     else{
+        this.channelConfig[ch] = config;
+     }
+     this.commit();
    }
 
     selectChannel(value){
