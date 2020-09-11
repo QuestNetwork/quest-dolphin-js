@@ -31,13 +31,13 @@ export class Dolphin {
      return QuestPubSub.getChallengeFlag(ch);
    }
    setChallengeFlag(ch, value){
-      QuestPubSub.setChallengeFlag(ch);
+      QuestPubSub.setChallengeFlag(ch, value);
    }
    getChannelConfig(ch = 'all'){
      return QuestPubSub.getChannelConfig(ch);
    }
    setChannelConfig(config, ch = 'all'){
-     QuestPubSub.setChannelConfig(ch);
+     QuestPubSub.setChannelConfig(config, ch);
    }
 
     selectChannel(value){
