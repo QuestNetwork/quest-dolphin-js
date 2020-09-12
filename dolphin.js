@@ -7,14 +7,18 @@ export class Dolphin {
     constructor(ipfsNode) {
       this.ipfsNode = ipfsNode;
       this.commitNowSub = new Subject();
+      this.commitSub = new Subject();
+      this.channelConfig = {};
+
       let uVar;
       this.selectedChannel = uVar;
-      this.selectedChannelSub = new Subject<any>();
-    }
-
-    constructor(private ipfs:IpfsService, private ui: UiService) {
+      this.selectedChannelSub = new Subject();
+      this.channelNameListSub = new Subject();
       QuestPubSub.commitNowSub.subscribe( (value) => {
         this.commitNowSub.next(value);
+      });
+      QuestPubSub.commitSub.subscribe( (value) => {
+        this.commitSub.next(value);
       });
     }
 
@@ -22,11 +26,25 @@ export class Dolphin {
      return array.indexOf(value) > -1;
    }
 
-   public selectChannel(value){
+
+   getChallengeFlag(ch){
+     return QuestPubSub.getChallengeFlag(ch);
+   }
+   setChallengeFlag(ch, value){
+      QuestPubSub.setChallengeFlag(ch, value);
+   }
+   getChannelConfig(ch = 'all'){
+     return QuestPubSub.getChannelConfig(ch);
+   }
+   setChannelConfig(config, ch = 'all'){
+     QuestPubSub.setChannelConfig(config, ch);
+   }
+
+    selectChannel(value){
      this.selectedChannel = value;
      this.selectedChannelSub.next(value);
    }
-   public getSelectedChannel(){
+    getSelectedChannel(){
      return this.selectedChannel;
    }
     listen(channel){
@@ -38,7 +56,6 @@ export class Dolphin {
 
         //clean the Input
         channelInput = channelInput.toLowerCase().replace(/[^A-Z0-9]+/ig, "-");
-
         let channelName = await QuestPubSub.createChannel(channelInput);
         this.getChannelKeyChain(channelName);
         this.getChannelParticipantList(channelName);
@@ -52,6 +69,15 @@ export class Dolphin {
         this.getChannelParticipantList(channelName);
         return channelName;
     }
+    // async addChannelFromInvite(channelName){
+    //     //clean the Input
+    //     await QuestPubSub.addChannel(channelName);
+    //     let kc = QuestPubSub.getChannelKeyChain(channel);
+    //     this.setChannelKeyChain(kc, channel);
+    //     let plist = QuestPubSub.generateChannelParticipantListFromChannelName();
+    //     this.setChannelParticipantList(plist,channelName);
+    //     return channelName;
+    // }
 
     getChannelParticipantList(channel = "all"){
       let pl = QuestPubSub.getChannelParticipantList(channel);
@@ -62,7 +88,7 @@ export class Dolphin {
       return QuestPubSub.setChannelParticipantList(partList, channel);
     }
 
-    channelNameListSub = new Subject();
+
     getChannelNameList(){
       return QuestPubSub.getChannelNameList();
     }
@@ -108,20 +134,20 @@ export class Dolphin {
     }
 
     async joinChannel(channel){
-      try {
-        if(this.ipfs.isReady()){
+      // try {
+      //   if(this.ipfs.isReady()){
             return await this.joinChannelProcess(channel);
-        }
-        else{
-          console.log('Waiting for ipfsNodeReadySub...');
-          this.ipfsNodeReadySub.subscribe(async () => {
-            return await this.joinChannelProcess(channel);
-          });
-        }
-      }
-      catch(error){
-        console.log(error);
-      }
+        // }
+        // else{
+        //   console.log('Waiting for ipfsNodeReadySub...');
+        //   this.ipfsNodeReadySub.subscribe(async () => {
+        //     return await this.joinChannelProcess(channel);
+        //   });
+        // }
+      // }
+      // catch(error){
+      //   console.log(error);
+      // }
     }
 
     async publishChannelMessage(channel, message){
@@ -157,6 +183,14 @@ export class Dolphin {
     }
     removeInviteCode(channel,link){
       return QuestPubSub.removeInviteCode(channel, link)
+    }
+
+    commitNow(){
+      this.commitNowSub.next(true);
+    }
+
+    commit(){
+      this.commitSub.next(true);
     }
 
   }
