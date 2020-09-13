@@ -1,10 +1,6 @@
 # Quest Dolphin JS
 > The smart api for [Quest PubSub JS](https://github.com/QuestNetwork/quest-pubsub-js)
 
-## Lead Maintainer
-
-[StationedInTheField](https://github.com/StationedInTheField)
-
 ## Description
 
 The Dolphin Process for the [Quest Network Operating System](https://github.com/QuestNetwork/quest-os-js) interacts with the core protocols used on the Quest Network like [Quest Pubsub JS](https://github.com/QuestNetwork/quest-dolphin-js). It offers an efficient API, spawns and controls applications installed on the host machine.
@@ -13,6 +9,10 @@ The Dolphin Process for the [Quest Network Operating System](https://github.com/
 ```
 npm install @questnetwork/quest-dolphin-js@0.9.2
 ```
+
+## Lead Maintainer
+
+[StationedInTheField](https://github.com/StationedInTheField)
 
 ## Support Us
 This project is a lot of work and unfortunately we need to eat food (ツ)
