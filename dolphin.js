@@ -150,8 +150,8 @@ export class Dolphin {
       // }
     }
 
-    async publishChannelMessage(channel, message){
-      let pubObj = { channel: channel, type: 'CHANNEL_MESSAGE',message }
+    async publishChannelMessage(channel, message, type = 'CHANNEL_MESSAGE'){
+      let pubObj = { channel: channel, type: type,message }
       QuestPubSub.publish(this.ipfsNode.pubsub,pubObj);
     }
 
