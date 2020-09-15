@@ -11,8 +11,7 @@ export class Dolphin {
       this.channelConfig = {};
 
       let uVar;
-      this.selectedChannel = uVar;
-      this.selectedChannelSub = new Subject();
+  
       this.channelNameListSub = new Subject();
       QuestPubSub.commitNowSub.subscribe( (value) => {
         this.commitNowSub.next(value);
@@ -40,13 +39,7 @@ export class Dolphin {
      QuestPubSub.setChannelConfig(config, ch);
    }
 
-    selectChannel(value){
-     this.selectedChannel = value;
-     this.selectedChannelSub.next(value);
-   }
-    getSelectedChannel(){
-     return this.selectedChannel;
-   }
+
     listen(channel){
         return QuestPubSub.subs[channel];
     }
