@@ -11,7 +11,7 @@ export class Dolphin {
       this.channelConfig = {};
 
       let uVar;
-  
+
       this.channelNameListSub = new Subject();
       QuestPubSub.commitNowSub.subscribe( (value) => {
         this.commitNowSub.next(value);
