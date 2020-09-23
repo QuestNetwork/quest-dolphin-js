@@ -11,8 +11,7 @@ export class Dolphin {
       this.channelConfig = {};
 
       let uVar;
-      this.selectedChannel = uVar;
-      this.selectedChannelSub = new Subject();
+
       this.channelNameListSub = new Subject();
       QuestPubSub.commitNowSub.subscribe( (value) => {
         this.commitNowSub.next(value);
@@ -40,15 +39,16 @@ export class Dolphin {
      QuestPubSub.setChannelConfig(config, ch);
    }
 
-    selectChannel(value){
-     this.selectedChannel = value;
-     this.selectedChannelSub.next(value);
-   }
-    getSelectedChannel(){
-     return this.selectedChannel;
-   }
+
     listen(channel){
         return QuestPubSub.subs[channel];
+    }
+
+    getIncomingFavoriteRequests(){
+      return QuestPubSub.getIncomingFavoriteRequests();
+    }
+    setIncomingFavoriteRequests(v){
+       QuestPubSub.setIncomingFavoriteRequests(v);
     }
 
     async createChannel(channelInput, isClean = false){
@@ -124,6 +124,8 @@ export class Dolphin {
 
     async completedChallenge(channel, code){
       let ownerChannelPubKey = QuestPubSub.getOwnerChannelPubKey(channel);
+      code = Buffer.from(code,'hex').toString('utf8').split(':')[1];
+      console.log(code);
       let pubObj = {
         channel: channel,
         type: 'CHALLENGE_RESPONSE',
@@ -150,10 +152,21 @@ export class Dolphin {
       // }
     }
 
-    async publishChannelMessage(channel, message){
-      let pubObj = { channel: channel, type: 'CHANNEL_MESSAGE',message }
+    async publishChannelMessage(channel, message, type = 'CHANNEL_MESSAGE'){
+      let pubObj = { channel: channel, type: type,message }
       QuestPubSub.publish(this.ipfsNode.pubsub,pubObj);
     }
+
+    async publish(channel, pubObj, type = 'CHANNEL_MESSAGE'){
+      if(typeof pubObj != 'object'){
+        pubObj = { message: pubObj };
+      }
+      pubObj['type'] = type;
+      pubObj['channel'] = channel;
+      QuestPubSub.publish(this.ipfsNode.pubsub,pubObj);
+    }
+
+
 
     getChannelHistory(channel){
       return QuestPubSub.getChannelHistory(channel);
@@ -185,12 +198,44 @@ export class Dolphin {
       return QuestPubSub.removeInviteCode(channel, link)
     }
 
+    setSocialProfiles(v){
+      QuestPubSub.setSocialProfiles(v);
+    }
+    setSocialProfile(profileId, v){
+      QuestPubSub.setSocialProfile(profileId,v);
+    }
+    getSocialProfiles(){
+      return QuestPubSub.getSocialProfiles();
+    }
+    setSocialSharedWith(array){
+      QuestPubSub.setSocialSharedWith(array);
+    }
+    clearSharedWith(){
+      QuestPubSub.setSocialSharedWith([]);
+    }
+    getSocialSharedWith(){
+       return QuestPubSub.getSocialSharedWith();
+    }
+    clearSocialSharedWith(){
+       QuestPubSub.clearSocialSharedWith();
+    }
+    setSocialLinks(v){
+      QuestPubSub.setSocialLinks(v);
+    }
+    getSocialLinks(){
+      return QuestPubSub.getSocialLinks();
+    }
+
     commitNow(){
       this.commitNowSub.next(true);
     }
 
     commit(){
       this.commitSub.next(true);
+    }
+
+    removeIncomingFavoriteRequest(pubKey){
+      QuestPubSub.removeIncomingFavoriteRequest(pubKey);
     }
 
   }
