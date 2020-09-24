@@ -1,6 +1,6 @@
 {
   "name": "@questnetwork/quest-dolphin-js",
-  "version": "0.9.3",
+  "version": "0.9.3-rc1",
   "license": "AGPL-3.0",
   "author": "StationedInTheField",
   "repository": {
@@ -14,7 +14,7 @@
     "build": "rm -rf dist && babel . --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files"
   },
   "dependencies": {
-    "@questnetwork/quest-pubsub-js": "0.9.3",
+    "@questnetwork/quest-pubsub-js": "0.9.3-rc1",
     "rxjs": "^6.6.2",
     "uuid": "^8.2.0"
   },
