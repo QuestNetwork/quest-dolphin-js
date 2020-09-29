@@ -21,10 +21,7 @@ export class Dolphin {
       });
     }
 
-    isInArray(value, array) {
-     return array.indexOf(value) > -1;
-   }
-
+  
 
    getChallengeFlag(ch){
      return QuestPubSub.getChallengeFlag(ch);
