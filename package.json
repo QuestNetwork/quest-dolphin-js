@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@questnetwork/quest-pubsub-js": "../quest-pubsub-js",
-    "rxjs": "^6.6.2",
+    "rxjs": "6.6.3",
     "uuid": "^8.2.0"
   },
   "devDependencies": {
