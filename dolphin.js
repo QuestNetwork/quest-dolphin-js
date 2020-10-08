@@ -21,7 +21,7 @@ export class Dolphin {
       });
     }
 
-  
+
 
    getChallengeFlag(ch){
      return QuestPubSub.getChallengeFlag(ch);
@@ -40,6 +40,11 @@ export class Dolphin {
     listen(channel){
         return QuestPubSub.subs[channel];
     }
+
+    isOnline(channelPubKey){
+        return QuestPubSub.isAlive(channelPubKey);
+    }
+
 
     getIncomingFavoriteRequests(){
       return QuestPubSub.getIncomingFavoriteRequests();
