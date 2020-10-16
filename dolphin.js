@@ -22,6 +22,10 @@ export class Dolphin {
     }
 
 
+    async sayHi(channel){
+      return QuestPubSub.sayHi(this.ipfsNode.pubsub, channel)
+    }
+
 
    getChallengeFlag(ch){
      return QuestPubSub.getChallengeFlag(ch);
