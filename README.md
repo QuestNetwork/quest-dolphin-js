@@ -7,12 +7,22 @@ The Dolphin Process for the [Quest Network Operating System](https://github.com/
 
 ## Installation & Usage
 ```
-npm install @questnetwork/quest-dolphin-js@0.9.3
+npm install @questnetwork/quest-dolphin-js@0.9.4
 ```
 
 ## Lead Maintainer
 
 [StationedInTheField](https://github.com/StationedInTheField)
+
+## API
+
+### async sayHi(channel)
+
+Send the sayHi message in a given channel.
+
+```javascript
+await <os>.ocean.dolphin.sayHi(channel)
+````
 
 ## Support Us
 This project is a lot of work and unfortunately we need to eat food (ツ)

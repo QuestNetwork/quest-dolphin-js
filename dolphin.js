@@ -21,9 +21,10 @@ export class Dolphin {
       });
     }
 
-    isInArray(value, array) {
-     return array.indexOf(value) > -1;
-   }
+
+    async sayHi(channel){
+      return QuestPubSub.sayHi(this.ipfsNode.pubsub, channel)
+    }
 
 
    getChallengeFlag(ch){
@@ -43,6 +44,11 @@ export class Dolphin {
     listen(channel){
         return QuestPubSub.subs[channel];
     }
+
+    isOnline(channelPubKey){
+        return QuestPubSub.isAlive(channelPubKey);
+    }
+
 
     getIncomingFavoriteRequests(){
       return QuestPubSub.getIncomingFavoriteRequests();
