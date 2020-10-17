@@ -22,7 +22,21 @@ Send the sayHi message in a given channel.
 
 ```javascript
 await <os>.ocean.dolphin.sayHi(channel)
-````
+```
+
+## Features
+
+**0.9.1**
+- Added invite codes and plist sync
+
+**0.9.3**
+- Added social types
+
+## Roadmap
+
+**0.9.5**
+
+- Request And Listen To Assemblies, Set Up Quorums
 
 ## Support Us
 This project is a lot of work, help us start a non-profit for this project! (ツ)
