@@ -25,7 +25,7 @@ await <os>.ocean.dolphin.sayHi(channel)
 ````
 
 ## Support Us
-This project is a lot of work and unfortunately we need to eat food (ツ)
+This project is a lot of work, help us start a non-profit for this project! (ツ)
 
 | Ethereum| Bitcoin |
 |---|---|
