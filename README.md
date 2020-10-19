@@ -36,7 +36,7 @@ await <os>.ocean.dolphin.sayHi(channel)
 
 **0.9.5**
 
-- Request And Listen To Assemblies, Set Up Quorums
+- Connect with [Quest Quorum JS](https://questnetwork.github.io/quest-quorum-js)
 
 ## Support Us
 This project is a lot of work, help us start a non-profit for this project! (ツ)
